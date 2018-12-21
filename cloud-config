@@ -1,17 +1,17 @@
 #cloud-config
 bootcmd:
   - dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc
-runcmd:
-  - wait-for-docker
-  - sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.4 --server https://96.76.63.114 --token d6h6h6mz4ksq7bxgxhzb2xsstx284r2m89p627jhjwfw5kzkdvkvrs --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker
-  - docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & 
-  - sudo rm /etc/rc.local
 write_files:
   - path: /opt/rancher/bin/install.yml
     permissions: "0755"
     content: |
       #cloud-config
       hostname: rancher-bitcolo
+      runcmd:
+        - wait-for-docker
+        - sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.4 --server https://96.76.63.114 --token d6h6h6mz4ksq7bxgxhzb2xsstx284r2m89p627jhjwfw5kzkdvkvrs --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker
+        - docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & 
+        - sudo rm /etc/rc.local
   - path: /etc/rc.local
     permissions: "0755"
     owner: root
@@ -19,3 +19,4 @@ write_files:
       #!/bin/bash
       sudo mkdir /dev/sr0
       echo Y | sudo ros install -f -c /opt/rancher/bin/install.yml -d /dev/sda
+      sudo shutdown -r now
