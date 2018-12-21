@@ -1,7 +1,19 @@
 #cloud-config
 #Run fdisk /dev/sda, and on the prompt enter m to get help, then use d command to delete existing partitions and finally w to write down the modified partition table to disk.
 #sudo ros install -y -f -d /dev/sda -c https://github.com/kachind/rancheros-cloud-config/raw/master/cloud-config.yml
+write_files:
+  - path: /opt/rancher/bin/install.yml
+    permissions: "0700"
+    content: |
+      #cloud-config
+      hostname: rancher-bitcolo
+      runcmd:
+        - docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.11 http://96.76.63.114:8080/v1/scripts/71EE0B44E5C8CD71F919:1514678400000:TtheCjGAdsJJtTc1uDxSzZDnl9w
+        - docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & 
+      
+  - path: /opt/rancher/bin/start.sh
+    permissions: "0700"
+    content: |
+      #!/bin/bash
+      echo Y | sudo ros install -f -c /opt/rancher/bin/install.yml -d /dev/sda
 
-runcmd:
-- docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.11 http://96.76.63.114:8080/v1/scripts/71EE0B44E5C8CD71F919:1514678400000:TtheCjGAdsJJtTc1uDxSzZDnl9w
-- docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & 
