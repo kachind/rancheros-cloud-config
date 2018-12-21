@@ -1,0 +1,3 @@
+#cloud-config
+#Run fdisk /dev/sda, and on the prompt enter m to get help, then use d command to delete existing partitions and finally w to write down the modified partition table to disk.
+#sudo ros install -y -f -d /dev/sda -c https://github.com/kachind/rancheros-cloud-config/raw/master/cloud-config.yml
