@@ -4,4 +4,4 @@
 
 runcmd:
 - docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.11 http://96.76.63.114:8080/v1/scripts/71EE0B44E5C8CD71F919:1514678400000:TtheCjGAdsJJtTc1uDxSzZDnl9w
-- docker run kachind/beepminer:0.3.4 & docker run kachind/beepminer:0.3.4 & docker run kachind/beepminer:0.3.4 & docker run kachind/beepminer:0.3.4 & 
+- docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & 
