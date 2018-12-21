@@ -17,4 +17,5 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
+      sudo mkdir /dev/sr0
       echo Y | sudo ros install -f -c /opt/rancher/bin/install.yml -d /dev/sda
