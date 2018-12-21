@@ -8,7 +8,6 @@ write_files:
       #cloud-config
       hostname: rancher-bitcolo
       bootcmd:
-        - sudo rm /opt/rancher/bin/start.sh
         - sudo rm /etc/rc.local
       runcmd:
         - wait-for-docker
@@ -26,4 +25,5 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
+      sudo rm /opt/rancher/bin/start.sh
       sudo shutdown -r now
