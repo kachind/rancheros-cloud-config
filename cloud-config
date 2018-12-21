@@ -31,5 +31,5 @@ write_files:
     content: |
       #!/bin/bash
       sudo rm /opt/rancher/bin/start.sh
-      sudo shutdown -r 1
       rm -- "$0"
+      sudo shutdown -r now
