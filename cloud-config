@@ -17,4 +17,3 @@ write_files:
       #!/bin/bash
       dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc
       echo Y | sudo ros install -f -c /opt/rancher/bin/install.yml -d /dev/sda
-      sudo shutdown -r now
