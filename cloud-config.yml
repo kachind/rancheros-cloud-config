@@ -6,7 +6,6 @@ rancher:
   services:
     rancher-agent1:
       image: rancher/rancher-agent:v2.1.4
-      command: 
       volumes:
         - /etc/kubernetes:/etc/kubernetes
         - /var/run:/var/run
