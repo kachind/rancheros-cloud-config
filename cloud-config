@@ -1,7 +1,7 @@
 #cloud-config
-rancher:
+rancher:https://coreos.com/matchbox/docs/latest/network-setup.html
   state:
-    fstype: ext4
+    fstype: auto
     formatzero: true
     autoformat:
     - /dev/sda
