@@ -12,5 +12,5 @@ write_files:
     content: |
       #!/bin/sh -e
       mkdir /dev/sr0
-      echo Y | ros install -f -c /opt/install.yml -d /dev/sda
+      echo Y | ros install -f -c https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml -d /dev/sda
       exit 0
