@@ -1,5 +1,5 @@
 #cloud-config
-rancher:https://coreos.com/matchbox/docs/latest/network-setup.html
+rancher:
   state:
     fstype: auto
     formatzero: true
