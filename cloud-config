@@ -24,7 +24,7 @@ write_files:
               - CATTLE_SERVER=https://96.76.63.114
               - CATTLE_TOKEN=d6h6h6mz4ksq7bxgxhzb2xsstx284r2m89p627jhjwfw5kzkdvkvrs
               - CATTLE_CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
-              - WORKER=true
+              - ALL=true
             privileged: true
             restart: unless-stopped
           beepminer1:
@@ -45,5 +45,9 @@ write_files:
     content: |
       #!/bin/sh -e
       mkdir /dev/sr0
+      while [ ! -f /opt/install.yml ]
+      do
+        sleep 2
+      done
       echo Y | ros install -f -c /opt/install.yml -d /dev/sda
       exit 0
