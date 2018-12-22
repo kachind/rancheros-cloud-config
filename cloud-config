@@ -13,14 +13,14 @@ write_files:
     permissions: "0755"
     owner: root
     content: |
-      #!/bin/bash
+      #!/bin/sh
       mkdir /dev/sr0
-      echo Y | sudo ros install -f -c /opt/rancher/bin/install.yml -d /dev/sda
+      echo Y | ros install -f -c /opt/rancher/bin/install.yml -d /dev/sda
   - path: /opt/rancher/bin/install.sh
     permissions: "0755"
     owner: root
     content: |
-      #!/bin/bash
+      #!/bin/sh
       wait-for-docker
       sleep 5
       docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.4 --server https://96.76.63.114 --token d6h6h6mz4ksq7bxgxhzb2xsstx284r2m89p627jhjwfw5kzkdvkvrs --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker
@@ -29,7 +29,7 @@ write_files:
     permissions: "0755"
     owner: root
     content: |
-      #!/bin/bash
+      #!/bin/sh -e
       rm /opt/rancher/bin/start.sh
       rm -- "$0"
       shutdown -r now
