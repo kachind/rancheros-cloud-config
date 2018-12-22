@@ -23,10 +23,11 @@ write_files:
             docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 &
       runcmd:
         - [ sh, /opt/rancher/bin/install.sh ]
-  - path: /opt/start.sh
+  - path: /etc/rc.local
     permissions: "0755"
     owner: root
     content: |
-      #!/bin/sh
+      #!/bin/sh -e
       mkdir /dev/sr0
       echo Y | ros install -f -c /opt/install.yml -d /dev/sda
+      exit 0
