@@ -11,10 +11,34 @@ write_files:
     content: |
       #cloud-config
       hostname: rancher-bitcolo
-      runcmd:
-        - wait-for-docker
-        - docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.4 --server https://96.76.63.114 --token d6h6h6mz4ksq7bxgxhzb2xsstx284r2m89p627jhjwfw5kzkdvkvrs --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker
-        - docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 & docker run --restart on-failure kachind/beepminer:0.3.4 &
+      rancher:
+        services:
+          rancher-agent1:
+            image: rancher/rancher-agent:v2.1.4
+            command: 
+            volumes:
+              - /etc/kubernetes:/etc/kubernetes
+              - /var/run:/var/run
+            net: host
+            environment:
+              - CATTLE_SERVER=https://96.76.63.114
+              - CATTLE_TOKEN=d6h6h6mz4ksq7bxgxhzb2xsstx284r2m89p627jhjwfw5kzkdvkvrs
+              - CATTLE_CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
+              - WORKER=true
+            privileged: true
+            restart: unless-stopped
+          beepminer1:
+            image: kachind/beepminer:0.3.4
+            restart: unless-stopped
+          beepminer2:
+            image: kachind/beepminer:0.3.4
+            restart: unless-stopped
+          beepminer3:
+            image: kachind/beepminer:0.3.4
+            restart: unless-stopped
+          beepminer4:
+            image: kachind/beepminer:0.3.4
+            restart: unless-stopped
   - path: /etc/rc.local
     permissions: "0755"
     owner: root
