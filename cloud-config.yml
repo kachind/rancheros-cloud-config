@@ -16,15 +16,3 @@ rancher:
         - ALL=true
       privileged: true
       restart: unless-stopped
-    beepminer1:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-    beepminer2:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-    beepminer3:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-    beepminer4:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
