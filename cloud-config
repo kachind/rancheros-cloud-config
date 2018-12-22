@@ -30,6 +30,6 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
-      sudo rm /opt/rancher/bin/start.sh
+      rm /opt/rancher/bin/start.sh
       rm -- "$0"
-      sudo shutdown -r now
+      shutdown -r now
