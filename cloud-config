@@ -31,6 +31,6 @@ write_files:
     content: |
       #!/bin/sh -e
       rm /opt/rancher/bin/start.sh
-      shutdown -r 1
+      shutdown -r 1 &
       rm -- "$0"
       exit 0
