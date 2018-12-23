@@ -22,3 +22,12 @@ rancher:
         - ALL=true
       privileged: true
       restart: unless-stopped
+write_files:
+  - path: /etc/rc.local
+    permissions: "0755"
+    owner: root
+    content: |
+      #!/bin/sh -e
+      name=`ip -4 addr show enp4s0f0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'`
+      sudo ros config set hostname ${name}
+      exit 0
