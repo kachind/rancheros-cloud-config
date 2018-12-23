@@ -5,9 +5,6 @@ bootcmd:
 runcmd:
 - iptables --flush
 - iptables -tnat --flush
-- wget https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/set-hostname.sh
-- chmod +x set-hostname.sh
-- ./set-hostname.sh
 rancher:
   network:
     dns:
@@ -28,3 +25,11 @@ rancher:
         - ALL=true
       privileged: true
       restart: unless-stopped
+write_files:
+  - path: /etc/rc.local
+    permissions: "0755"
+    owner: root
+    content: |
+      #!/bin/sh -e
+      name=`ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'`
+      sudo ros config set hostname ${name}
