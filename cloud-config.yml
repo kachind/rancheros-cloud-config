@@ -1,7 +1,8 @@
 #cloud-config
 bootcmd:
-- systemctl stop firewalld
-- systemctl disable firewalld
+- iptables --flush
+- iptables -tnat --flush
+runcmd:
 - iptables --flush
 - iptables -tnat --flush
 rancher:
