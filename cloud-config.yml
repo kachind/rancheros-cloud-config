@@ -1,9 +1,7 @@
 #cloud-config
 runcmd:
 - iptables --flush
-- iptables -tnat --flush
-- kubeadm join --discovery-token-unsafe-skip-ca-verification --token=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd 96.76.63.114:6443
-rancher:
+- iptables -tnat --flushrancher:
   network:
     dns:
       nameservers:
@@ -17,9 +15,9 @@ rancher:
         - /var/run:/var/run
       net: host
       environment:
-        - CATTLE_SERVER=96.76.63.114
-        - CATTLE_TOKEN=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd
-        - CATTLE_CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
+        - SERVER=96.76.63.114
+        - TOKEN=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd
+        - CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
         - WORKER=true
       privileged: true
       restart: unless-stopped
