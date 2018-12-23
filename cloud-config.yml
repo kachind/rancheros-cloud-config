@@ -17,7 +17,7 @@ rancher:
       net: host
       environment:
         - CATTLE_SERVER=96.76.63.114
-        - CATTLE_TOKEN=zbgkwmrs4x7cws9jvxkvj4q6bq8hn7dhgmzxpbjc8x46fwjvg9qv55
+        - CATTLE_TOKEN=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd
         - CATTLE_CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
         - WORKER=true
       privileged: true
