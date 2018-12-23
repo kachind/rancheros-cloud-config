@@ -2,7 +2,7 @@
 runcmd:
 - iptables --flush
 - iptables -tnat --flush
-- sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.1 -server https://96.76.63.114:8443 --token k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker
+- sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.1 -server https://96.76.63.114:443 --token k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker
 #rancher:
 #  network:
 #    dns:
@@ -17,7 +17,7 @@ runcmd:
 #        - /var/run:/var/run
 #      net: host
 #      environment:
-#        - SERVER=https://96.76.63.114:8443
+#        - SERVER=https://96.76.63.114:443
 #        - TOKEN=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd
 #        - CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
 #        - WORKER=true
