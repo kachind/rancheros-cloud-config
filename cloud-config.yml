@@ -5,6 +5,9 @@ bootcmd:
 runcmd:
 - iptables --flush
 - iptables -tnat --flush
+- wget https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/set-hostname.sh
+- chmod +x set-hostname.sh
+- ./set-hostname.sh
 rancher:
   network:
     dns:
