@@ -2,6 +2,8 @@
 bootcmd:
 - systemctl stop firewalld
 - systemctl disable firewalld
+- iptables --flush
+- iptables -tnat --flush
 rancher:
   network:
     dns:
