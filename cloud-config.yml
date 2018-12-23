@@ -2,6 +2,7 @@
 runcmd:
 - iptables --flush
 - iptables -tnat --flush
+- kubeadm join --discovery-token-unsafe-skip-ca-verification --token=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd 96.76.63.114:6443
 rancher:
   network:
     dns:
