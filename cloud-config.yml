@@ -1,7 +1,8 @@
 #cloud-config
 runcmd:
 - iptables --flush
-- iptables -tnat --flushrancher:
+- iptables -tnat --flush
+rancher:
   network:
     dns:
       nameservers:
