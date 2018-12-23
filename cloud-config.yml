@@ -1,8 +1,40 @@
 #cloud-config
-runcmd:
-- iptables --flush
-- iptables -tnat --flush
-- sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.1.4 -server https://96.76.63.114:443 --token k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd --ca-checksum dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d --worker --address awspublic --internal-address awspublic
+rancher:
+  network:
+    dns:
+      nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+  services:
+    beepminer1:
+      image: kachind/beepminer:0.3.4
+      restart: unless-stopped
+      net: host
+    beepminer2:
+      image: kachind/beepminer:0.3.4
+      restart: unless-stopped
+      net: host
+    beepminer3:
+      image: kachind/beepminer:0.3.4
+      restart: unless-stopped
+      net: host
+    beepminer4:
+      image: kachind/beepminer:0.3.4
+      restart: unless-stopped
+      net: host
+write_files:
+  - path: /etc/docker/daemon.json
+    permissions: "0755"
+    owner: root
+    content: |
+      {
+        "metrics-addr" : "127.0.0.1:9323",
+        "experimental" : true
+      }
+
+#runcmd:
+#- iptables --flush
+#- iptables -tnat --flush
 #rancher:
 #  network:
 #    dns:
