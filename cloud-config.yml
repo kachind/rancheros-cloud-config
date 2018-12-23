@@ -29,5 +29,6 @@ write_files:
     content: |
       #!/bin/sh -e
       name=`ip -4 addr show enp4s0f0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'`
-      sudo ros config set hostname ${name}
+      hostname=${name} | tr  "."  "-"
+      sudo ros config set hostname ${hostname}
       exit 0
