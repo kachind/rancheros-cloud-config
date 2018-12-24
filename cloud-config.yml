@@ -22,7 +22,8 @@ write_files:
       #!/bin/bash
       while [ $(hostname) == "rancher" ]; do
       apt install -y ipmitool; modprobe ipmi_devintf; modprobe ipmi_si
-      ros config set hostname $(sudo ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g'); sleep 1; done
+      hostname=$(sudo ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')
+      ros config set hostname $(hostname); sleep 1; done
       wait-for-docker
       while [ ! "$(docker plugin ls | grep weave )" ]; do
       docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0; sleep 1; done
