@@ -22,13 +22,13 @@ write_files:
       if [ "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "inactive" ]; then
         exit 0
       else
-      ufw allow 2377/tcp
-      docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
-      wget -O /usr/local/bin/weave git.io/weave
-      chmod a+x /usr/local/bin/weave
-      weave launch ki-svr
-      eval $(weave env)
-      docker run --restart unless-stopped -ti weaveworks/ubuntu
+        ufw allow 2377/tcp
+        docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
+        wget -O /usr/local/bin/weave git.io/weave
+        chmod a+x /usr/local/bin/weave
+        weave launch ki-svr
+        eval $(weave env)
+        docker run --restart unless-stopped -ti weaveworks/ubuntu
       fi
 - path: /etc/docker/daemon.json
     permissions: "0755"
