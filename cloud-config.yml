@@ -19,7 +19,7 @@ write_files:
     content: |
       #!/bin/bash
       wait-for-docker
-      if [ "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "inactive" ]; then
+      if [ "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; then
         exit 0
       else
         ufw allow 2377/tcp
