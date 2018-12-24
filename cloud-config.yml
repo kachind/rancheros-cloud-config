@@ -26,6 +26,7 @@ rancher:
       net: host
     exporter:
       image: prom/node-exporter:latest
+      restart: unless-stopped
       ports:
         - '9100:9100'
       volumes:
