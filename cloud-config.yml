@@ -1,6 +1,4 @@
 #cloud-config
-runcmd:
-  - docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
 rancher:
   network:
     dns:
@@ -36,6 +34,13 @@ rancher:
       deploy:
         mode: global
 write_files:
+  - path: /etc/rc.local
+    permissions: "0755"
+    owner: root
+    content: |
+      #!/bin/sh -e
+      wait-for-docker
+      sudo docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
   - path: /etc/docker/daemon.json
     permissions: "0755"
     owner: root
