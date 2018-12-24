@@ -30,7 +30,7 @@ write_files:
         eval $(weave env)
         docker run --restart unless-stopped -ti weaveworks/ubuntu
       fi
-- path: /etc/docker/daemon.json
+  - path: /etc/docker/daemon.json
     permissions: "0755"
     owner: root
     content: |
