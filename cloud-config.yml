@@ -24,6 +24,16 @@ rancher:
       image: kachind/beepminer:0.3.4
       restart: unless-stopped
       net: host
+    exporter:
+      image: prom/node-exporter:latest
+      ports:
+        - '9100:9100'
+      volumes:
+        - /sys:/host/sys:ro
+        - /:/rootfs:ro
+        - /proc:/host/proc:ro
+      deploy:
+        mode: global
 write_files:
   - path: /etc/docker/daemon.json
     permissions: "0755"
