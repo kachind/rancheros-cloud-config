@@ -5,18 +5,6 @@ rancher:
       nameservers:
         - 8.8.8.8
         - 8.8.4.4
-  services:
-    exporter:
-      image: prom/node-exporter:latest
-      restart: unless-stopped
-      ports:
-        - '9100:9100'
-      volumes:
-        - /sys:/host/sys:ro
-        - /:/rootfs:ro
-        - /proc:/host/proc:ro
-      deploy:
-        mode: global
 write_files:
   - path: /etc/rc.local
     permissions: "0755"
