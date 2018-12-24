@@ -24,8 +24,7 @@ write_files:
       else
         ufw allow 2377/tcp
         docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
-        docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release
-        docker plugin set weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0
+        docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0
       fi
   - path: /etc/docker/daemon.json
     permissions: "0755"
