@@ -24,7 +24,8 @@ write_files:
     content: |
       #!/bin/sh -e
       wait-for-docker
-      docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
+      ufw allow 2377/tcp
+      docker swarm join --advertise-addr 96.76.63.113 --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
   - path: /etc/docker/daemon.json
     permissions: "0755"
     owner: root
