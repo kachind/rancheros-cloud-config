@@ -25,7 +25,7 @@ write_files:
       docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0; sleep 1; done
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
-      docker swarm join --token SWMTKN-1-2372tgabph85d7eaq3ygrkbpa4oplmi6z3k8z2egjyoj7x5ac1-2ubiosjfjfy8kf2g6t9h6ubzv 96.76.63.114:2377
+      docker swarm join --token SWMTKN-1-5ubzhuli6fqlqaj07sb49a7qkbb6lt423iykvx3jost1gtlqse-00f56tj4fcr5kkqgc2l3ykh5d [2603:3023:5f4:f000:210:18ff:fe8b:d782]:2377
       sleep 1; done
       while [ -z $(docker images -q kachind/beepminer:0.3.4) ]; do
       docker pull kachind/beepminer:0.3.4; sleep 1; done
