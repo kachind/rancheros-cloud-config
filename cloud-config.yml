@@ -1,4 +1,4 @@
-#cloud-config
+#cloud-config 
 rancher:
   docker:
     engine: docker-18.09.0
