@@ -20,7 +20,7 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
-      while [ $(hostname) == "rancher" ]; do
+      while [ hostname == "rancher" ]; do
       apt install -y ipmitool; modprobe ipmi_devintf; modprobe ipmi_si
       hostname=$(sudo ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')
       ros config set hostname $(hostname); sleep 1; done
