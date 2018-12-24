@@ -25,13 +25,13 @@ write_files:
       sleep 1; done
       while [ ! "$(docker plugin ls | grep weave )" ]; do
       docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0; sleep 1; done
-      while [ -z $(docker images -q kachind/beepminer:0.3.4 ]; do
+      while [ -z $(docker images -q kachind/beepminer:0.3.4) ]; do
       docker pull kachind/beepminer:0.3.4; sleep 1; done
-      while [ -z $(docker images -q stefanprodan/caddy:latest ]; do
+      while [ -z $(docker images -q stefanprodan/caddy:latest) ]; do
       docker pull stefanprodan/caddy:latest; sleep 1; done
-      while [ -z $(docker images -q google/cadvisor:latest ]; do
+      while [ -z $(docker images -q google/cadvisor:latest) ]; do
       docker pull google/cadvisor:latest; sleep 1; done
-      while [ -z $(docker images -q stefanprodan/swarmprom-node-exporter:v0.16.0 ]; do
+      while [ -z $(docker images -q stefanprodan/swarmprom-node-exporter:v0.16.0) ]; do
       docker pull stefanprodan/swarmprom-node-exporter:v0.16.0; sleep 1; done
   - path: /etc/docker/daemon.json
     permissions: "0755"
