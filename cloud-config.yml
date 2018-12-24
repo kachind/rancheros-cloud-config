@@ -6,22 +6,6 @@ rancher:
         - 8.8.8.8
         - 8.8.4.4
   services:
-    beepminer1:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-      net: host
-    beepminer2:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-      net: host
-    beepminer3:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-      net: host
-    beepminer4:
-      image: kachind/beepminer:0.3.4
-      restart: unless-stopped
-      net: host
     exporter:
       image: prom/node-exporter:latest
       restart: unless-stopped
