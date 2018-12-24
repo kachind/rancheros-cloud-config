@@ -1,5 +1,7 @@
 #cloud-config
 rancher:
+  docker:
+    engine: docker-18.09.0
   network:
     dns:
       nameservers:
