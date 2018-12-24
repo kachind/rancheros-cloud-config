@@ -29,7 +29,7 @@ write_files:
         docker pull stefanprodan/caddy:latest
         docker pull google/cadvisor:latest
         docker pull stefanprodan/swarmprom-node-exporter:v0.16.0
-        fi
+      fi
   - path: /etc/docker/daemon.json
     permissions: "0755"
     owner: root
