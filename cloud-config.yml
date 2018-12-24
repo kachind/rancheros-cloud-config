@@ -49,27 +49,3 @@ write_files:
         "metrics-addr" : "127.0.0.1:9323",
         "experimental" : true
       }
-
-#runcmd:
-#- iptables --flush
-#- iptables -tnat --flush
-#rancher:
-#  network:
-#    dns:
-#      nameservers:
-#        - 8.8.8.8
-#        - 8.8.4.4
-#  services:
-#    rancher-agent1:
-#      image: rancher/rancher-agent:v2.1.4
-#      volumes:
-#        - /etc/kubernetes:/etc/kubernetes
-#        - /var/run:/var/run
-#      net: host
-#      environment:
-#        - SERVER=https://96.76.63.114:443
-#        - TOKEN=k4j2vv77qzn6xqxxctvnxcxflg5m9xfdzxhhgrp789n24n2w5jpbrd
-#        - CA_CHECKSUM=dad2461ef7d90188d1e72224c3f693cf37390fe49ec0b16cb1477d961c03460d
-#        - WORKER=true
-#      privileged: true
-#      restart: unless-stopped
