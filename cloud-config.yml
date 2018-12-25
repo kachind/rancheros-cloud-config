@@ -13,7 +13,6 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
-      apt-get install -y hostname
       wait-for-docker
       while [ hostname=="rancher" ]; do
       ros service enable kernel-extras
