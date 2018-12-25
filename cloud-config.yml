@@ -1,5 +1,6 @@
 #cloud-config
 rancher:
+  modules: [ipmi_devintf,ipmi_si]
   docker:
     engine: docker-18.09.0
   network:
