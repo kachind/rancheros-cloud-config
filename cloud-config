@@ -35,6 +35,14 @@ write_files:
       else
         docker volume rm -f $VLIST
       fi
+      ./etc/join.sh &
+      exit 0
+  - path: /etc/join.sh
+    permissions: "0755"
+    owner: root
+    content: |
+      #!/bin/bash
+      wait-for-docker
       while [ ! new_hostname=="rancher" ]; do
         sudo ros service enable kernel-extras
         sudo ros service up kernel-extras
@@ -48,4 +56,3 @@ write_files:
       wget -O /etc/cloud-config.yml https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml
       sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
       echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sda
-      exit 0
