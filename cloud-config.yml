@@ -8,14 +8,7 @@ rancher:
         - 8.8.8.8
         - 8.8.4.4
 write_files:
-  - path: /etc/rc.local
-    permissions: "0755"
-    owner: root
-    content: |
-      #!/bin/sh -e
-      ./etc/join.sh &
-      exit 0
-  - path: /etc/join.sh
+  - path: /opt/rancher/bin/start.sh
     permissions: "0755"
     owner: root
     content: |
