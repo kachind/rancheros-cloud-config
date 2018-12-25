@@ -35,5 +35,17 @@ write_files:
       else
         docker volume rm -f $VLIST
       fi
-      echo Y | ros install -f -c https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml -d /dev/sda
+      while [ ! new_hostname=="rancher" ]; do
+        sudo ros service enable kernel-extras
+        sudo ros service up kernel-extras
+        modprobe ipmi_devintf; modprobe ipmi_si
+        new_hostname=$(sudo system-docker run --privileged -v /usr/src:/usr/src -v /lib/modules:/lib/modules kfox1111/ipmitool lan print 1 | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')
+        echo ${new_hostname}
+      sleep 1; done
+      match="#cloud-config"
+      script="hostname: "
+      insert="$script$new_hostname"
+      wget https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml
+      sed -i "s/$match/$match\n$insert/" $cloud-config.yml
+      echo Y | ros install -f -c cloud-config.yml -d /dev/sda
       exit 0
