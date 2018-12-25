@@ -18,7 +18,7 @@ write_files:
       ros service enable kernel-extras
       ros service up kernel-extras
       modprobe ipmi_devintf; modprobe ipmi_si
-      hostname=$(docker run kfox1111/ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')'
+      hostname=$(sudo system-docker run --privileged -v /usr/src:/usr/src -v /lib/modules:/lib/modules kfox1111/ipmitool lan print 1 | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')'
       echo $(hostname)
       ros config set hostname $(hostname); sleep 1; done
       while [ ! "$(docker plugin ls | grep weave )" ]; do
