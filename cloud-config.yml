@@ -27,7 +27,8 @@ write_files:
       ros service enable kernel-extras
       ros service up -d kernel-extras
       modprobe ipmi_devintf; modprobe ipmi_si
-      hostname=$(docker run kfox1111/ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')
+      hostname=$(docker run kfox1111/ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')'
+      echo $(hostname)
       ros config set hostname $(hostname); sleep 1; done
       while [ ! "$(docker plugin ls | grep weave )" ]; do
       docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0; sleep 1; done
