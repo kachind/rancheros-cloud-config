@@ -35,9 +35,9 @@ write_files:
       else
         docker volume rm -f $VLIST
       fi
-      ./etc/join.sh &
+      ./etc/install.sh &
       exit 0
-  - path: /etc/join.sh
+  - path: /etc/install.sh
     permissions: "0755"
     owner: root
     content: |
