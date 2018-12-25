@@ -45,7 +45,7 @@ write_files:
       match="#cloud-config"
       script="hostname: "
       insert="$script$new_hostname"
-      wget https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml
-      sed -i "s/$match/$match\n$insert/" cloud-config.yml
-      echo Y | ros install -f -c cloud-config.yml -d /dev/sda
+      wget -O /etc/cloud-config.yml https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml
+      sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
+      echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sda
       exit 0
