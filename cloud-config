@@ -43,6 +43,7 @@ write_files:
     content: |
       #!/bin/bash
       wait-for-docker
+      new_hostname="rancher"
       while [ ! new_hostname=="rancher" ]; do
         sudo ros service enable kernel-extras
         sudo ros service up kernel-extras
