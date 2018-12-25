@@ -16,7 +16,7 @@ write_files:
       wait-for-docker
       while [ hostname=="rancher" ]; do
       ros service enable kernel-extras
-      ros service up -d kernel-extras
+      ros service up kernel-extras
       modprobe ipmi_devintf; modprobe ipmi_si
       hostname=$(docker run kfox1111/ipmitool lan print | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')'
       echo $(hostname)
