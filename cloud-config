@@ -11,6 +11,7 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
+      ./etc/install.sh &
       mkdir /dev/sr0
       DLIST="/var/lib/etcd /etc/kubernetes /etc/cni /opt/cni /var/lib/cni /var/run/calico /opt/rke"
         for dir in $DLIST; do
@@ -35,9 +36,7 @@ write_files:
       else
         docker volume rm -f $VLIST
       fi
-      echo "Cleanup complete. Starting ROS install..."
-      ./etc/install.sh &
-      sleep 100
+      echo "Cleanup complete."
       exit 0
   - path: /etc/install.sh
     permissions: "0755"
