@@ -35,6 +35,7 @@ write_files:
       else
         docker volume rm -f $VLIST
       fi
+      echo "Cleanup complete. Starting ROS install..."
       ./etc/install.sh &
       exit 0
   - path: /etc/install.sh
