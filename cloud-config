@@ -36,6 +36,7 @@ write_files:
         docker volume rm -f $VLIST
       fi
       ./etc/install.sh &
+      wait -n
       exit 0
   - path: /etc/install.sh
     permissions: "0755"
