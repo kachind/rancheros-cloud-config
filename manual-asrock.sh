@@ -34,4 +34,4 @@
       insert="$script$new_hostname"
       sudo wget -O /etc/cloud-config.yml https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml
       sudo sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
-echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sda
+echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sdd
