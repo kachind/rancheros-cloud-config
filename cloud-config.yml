@@ -33,7 +33,7 @@ write_files:
       docker pull stefanprodan/swarmprom-node-exporter:v0.16.0; sleep 1; done
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
-      docker swarm join --token SWMTKN-1-5xwuz818n7eo586d142il79xuiji4pjq4n0sdclaj76c9abn27-blrja0lbulo57ph3fzmfpqmqe 96.76.63.114:2377
+      docker swarm join --token SWMTKN-1-0c23uzafwc4z26oj8vx4bhqv3x5hlmkugxbi8eblf8pc5eonp9-dehjowynf7tfwdxjkg73bnj5n 96.76.63.114:2377
       sleep 1; done
   - path: /etc/docker/daemon.json
     permissions: "0755"
