@@ -32,7 +32,7 @@
       match="#cloud-config"
       script="hostname: "
       insert="$script$new_hostname"
-      wget_output=0
+      wget_output=1
       while [$wget_output -ne 0]
       do
         wget_output=`sudo wget -O /etc/cloud-config.yml https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml`
