@@ -21,16 +21,8 @@ write_files:
     content: |
       #!/bin/bash
       wait-for-docker
-      while [ ! "$(docker plugin ls | grep weave )" ]; do
-      docker plugin install --disable-content-trust --grant-all-permissions weaveworks/net-plugin:latest_release WEAVE_PASSWORD=xfG1xqZn0; sleep 1; done
-      while [ -z $(docker images -q kachind/beepminer:0.3.4) ]; do
-      docker pull kachind/beepminer:0.3.4; sleep 1; done
-      while [ -z $(docker images -q stefanprodan/caddy:latest) ]; do
-      docker pull stefanprodan/caddy:latest; sleep 1; done
-      while [ -z $(docker images -q google/cadvisor:latest) ]; do
-      docker pull google/cadvisor:latest; sleep 1; done
-      while [ -z $(docker images -q stefanprodan/swarmprom-node-exporter:v0.16.0) ]; do
-      docker pull stefanprodan/swarmprom-node-exporter:v0.16.0; sleep 1; done
+      while [ -z $(docker images -q kachind/verusminer:latest) ]; do
+      docker pull kachind/verusminer:latest; sleep 1; done
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
       docker swarm join --token SWMTKN-1-0le6zonssopwlxxec5eh87kew3n0zeq9fhbzm8thgm5wrxbydd-cprluuganl7po9daeqcfzmaij 96.76.63.114:2377
