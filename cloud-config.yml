@@ -21,8 +21,6 @@ write_files:
     content: |
       #!/bin/bash
       wait-for-docker
-      while [ -z $(docker images -q kachind/verusminer:latest) ]; do
-      docker pull kachind/verusminer:latest; sleep 1; done
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       system-docker stop network
       sleep 10
