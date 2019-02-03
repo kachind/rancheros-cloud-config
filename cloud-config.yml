@@ -13,7 +13,7 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
-      ./etc/join.sh &
+      /etc/join.sh &
       exit 0
   - path: /etc/join.sh
     permissions: "0755"
