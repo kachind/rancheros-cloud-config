@@ -43,18 +43,18 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
-      sudo ros service enable kernel-extras
-      sudo ros service up kernel-extras
-      modprobe ipmi_devintf; modprobe ipmi_si
-      wait-for-docker
-      new_hostname=$(sudo system-docker run --privileged -v /usr/src:/usr/src -v /lib/modules:/lib/modules kfox1111/ipmitool lan print 1 | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')
-      echo ${new_hostname}
-      match="#cloud-config"
-      script="hostname: "
-      insert="$script$new_hostname"
       wget_output=1
       while [$wget_output -ne 0]
       do
+        sudo ros service enable kernel-extras
+        sudo ros service up kernel-extras
+        modprobe ipmi_devintf; modprobe ipmi_si
+        wait-for-docker
+        new_hostname=$(sudo system-docker run --privileged -v /usr/src:/usr/src -v /lib/modules:/lib/modules kfox1111/ipmitool lan print 1 | grep "IP Address  " | sed 's/.* //' | sed 's/\./-/g')
+        echo ${new_hostname}
+        match="#cloud-config"
+        script="hostname: "
+        insert="$script$new_hostname"
         wget_output=`sudo wget -O /etc/cloud-config.yml https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml`
         wget_output=$?
         ifconfig down docker-sys
