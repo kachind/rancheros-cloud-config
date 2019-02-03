@@ -26,6 +26,12 @@ write_files:
       sleep 10
       system-docker start network
       sleep 5
+      ifconfig eth0 down
+      ifconfig eth1 down
+      sleep 5
+      ifconfig eth1 up
+      ifconfig eth0 up
+      sleep 5
       ufw allow 2377/tcp
       docker swarm join --token SWMTKN-1-0le6zonssopwlxxec5eh87kew3n0zeq9fhbzm8thgm5wrxbydd-cprluuganl7po9daeqcfzmaij 96.76.63.114:2377
       sleep 1; done
