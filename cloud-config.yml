@@ -24,6 +24,10 @@ write_files:
       while [ -z $(docker images -q kachind/verusminer:latest) ]; do
       docker pull kachind/verusminer:latest; sleep 1; done
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
+      system-docker stop network
+      sleep 10
+      system-docker start network
+      sleep 5
       ufw allow 2377/tcp
       docker swarm join --token SWMTKN-1-0le6zonssopwlxxec5eh87kew3n0zeq9fhbzm8thgm5wrxbydd-cprluuganl7po9daeqcfzmaij 96.76.63.114:2377
       sleep 1; done
