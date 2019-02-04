@@ -5,6 +5,10 @@ rancher:
     formatzero: true
     autoformat:
     - /dev/sda
+    - /dev/sdb
+    - /dev/sdc
+    - /dev/sdd
+    - /dev/sde
 write_files:
   - path: /etc/rc.local
     permissions: "0755"
@@ -65,3 +69,7 @@ write_files:
       done
       sudo sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
       echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sda
+      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sdb
+      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sdc
+      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sdd
+      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sde
