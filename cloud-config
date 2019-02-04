@@ -5,10 +5,6 @@ rancher:
     formatzero: true
     autoformat:
     - /dev/sda
-    - /dev/sdb
-    - /dev/sdc
-    - /dev/sdd
-    - /dev/sde
 write_files:
   - path: /etc/rc.local
     permissions: "0755"
