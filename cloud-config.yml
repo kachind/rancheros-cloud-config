@@ -13,15 +13,7 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
-      /etc/join.sh &
-      exit 0
-  - path: /etc/join.sh
-    permissions: "0755"
-    owner: root
-    content: |
-      #!/bin/bash
-      wait-for-docker
-      while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
+      while [ ! (ping -c 2 8.8.8.8 > /dev/null) ]; do
       system-docker stop network
       sleep 10
       system-docker start network
@@ -32,6 +24,16 @@ write_files:
       ifconfig eth1 up
       ifconfig eth0 up
       sleep 5
+      done
+      /etc/join.sh &
+      exit 0
+  - path: /etc/join.sh
+    permissions: "0755"
+    owner: root
+    content: |
+      #!/bin/bash
+      wait-for-docker
+      while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
       docker swarm join --token SWMTKN-1-0le6zonssopwlxxec5eh87kew3n0zeq9fhbzm8thgm5wrxbydd-cprluuganl7po9daeqcfzmaij 96.76.63.114:2377
       sleep 1; done
