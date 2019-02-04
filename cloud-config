@@ -68,8 +68,6 @@ write_files:
         sleep 1
       done
       sudo sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
-      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sda
-      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sdb
-      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sdc
-      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sdd
-      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d /dev/sde
+      DRIVE=$(sudo fdisk -l | grep 'Disk /dev/' | cut -f 2 -d ' ')
+      DRIVE=${DRIVE%?}
+      echo Y | sudo ros install -f -c /etc/cloud-config.yml -d ${DRIVE}
