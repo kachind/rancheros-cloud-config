@@ -21,6 +21,7 @@ write_files:
     owner: root
     content: |
       #!/bin/bash
+      wait-for-docker
       ((count = 1000))
       while [[ $count -ne 0 ]] ; do
       ping -c 1 8.8.8.8
@@ -41,7 +42,6 @@ write_files:
         sleep 5
       fi
       ((count = count - 1))
-      wait-for-docker
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
       docker swarm join --token SWMTKN-1-0le6zonssopwlxxec5eh87kew3n0zeq9fhbzm8thgm5wrxbydd-cprluuganl7po9daeqcfzmaij 96.76.63.114:2377
