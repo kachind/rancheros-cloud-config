@@ -13,7 +13,8 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
-      while [ ! (ping -c 2 8.8.8.8 > /dev/null) ]; do
+      while [ ! $(ping -c 2 8.8.8.8 > /dev/null) ]; do
+      echo "trying network restart"
       system-docker stop network
       sleep 10
       system-docker start network
