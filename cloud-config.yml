@@ -13,6 +13,14 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
+      done
+      /etc/join.sh &
+      exit 0
+  - path: /etc/join.sh
+    permissions: "0755"
+    owner: root
+    content: |
+      #!/bin/bash
       ((count = 1000))
       while [[ $count -ne 0 ]] ; do
       ping -c 1 8.8.8.8
@@ -33,14 +41,6 @@ write_files:
         sleep 5
       fi
       ((count = count - 1))
-      done
-      /etc/join.sh &
-      exit 0
-  - path: /etc/join.sh
-    permissions: "0755"
-    owner: root
-    content: |
-      #!/bin/bash
       wait-for-docker
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
