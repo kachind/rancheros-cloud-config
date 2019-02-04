@@ -15,7 +15,7 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
-      ./etc/install.sh &
+      sudo /etc/install.sh &
       mkdir /dev/sr0
       DLIST="/var/lib/etcd /etc/kubernetes /etc/cni /opt/cni /var/lib/cni /var/run/calico /opt/rke"
         for dir in $DLIST; do
