@@ -49,7 +49,7 @@ write_files:
       #!/bin/bash
       wget_output=1
       wait-for-docker
-      while [$wget_output -ne 0]
+      while [ $wget_output -ne 0 ]
       do
         system-docker stop network
         sleep 10
