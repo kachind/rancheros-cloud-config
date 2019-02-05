@@ -37,10 +37,13 @@ write_files:
         ifconfig eth1 down
         sleep 5
         ifconfig eth1 up
+        netconf
+        sleep 5
         ifconfig eth0 up
         sleep 5
       fi
       ((count = count - 1))
+      netconf
       done
       while [ ! "$(sudo docker info | grep Swarm | sed 's/Swarm: //g')" == "active" ]; do
       ufw allow 2377/tcp
