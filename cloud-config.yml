@@ -13,7 +13,6 @@ write_files:
     owner: root
     content: |
       #!/bin/sh -e
-      done
       /etc/join.sh &
       exit 0
   - path: /etc/join.sh
