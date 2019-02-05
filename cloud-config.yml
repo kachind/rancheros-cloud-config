@@ -37,6 +37,7 @@ write_files:
         ifconfig eth1 down
         sleep 5
         ifconfig eth1 up
+        sleep 5
         netconf
         sleep 5
         ifconfig eth0 up
