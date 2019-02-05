@@ -48,11 +48,3 @@ write_files:
       ufw allow 2377/tcp
       docker swarm join --token SWMTKN-1-0le6zonssopwlxxec5eh87kew3n0zeq9fhbzm8thgm5wrxbydd-cprluuganl7po9daeqcfzmaij 96.76.63.114:2377
       sleep 1; done
-  - path: /etc/docker/daemon.json
-    permissions: "0755"
-    owner: root
-    content: |
-      {
-        "metrics-addr" : "0.0.0.0:9323",
-        "experimental" : true
-      }
