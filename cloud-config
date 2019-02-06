@@ -63,24 +63,6 @@ write_files:
         wget_output=$?
         sleep 1
       done
-      (
-      echo o # clear the in memory partition table
-      echo n # new partition
-      echo p # primary partition
-      echo 1 # partition number 1
-      echo # default - start at beginning of disk 
-      echo +100M # 100 MB boot parttion
-      echo n # new partition
-      echo p # primary partition
-      echo 2 # partion number 2
-      echo # default, start immediately after preceding partition
-      echo # default, extend partition to end of disk
-      echo a # make a partition bootable
-      echo 1 # bootable partition is partition 1 -- /dev/sda1
-      echo p # print the in-memory partition table
-      echo w # write the partition table
-      echo q # and we're done
-      ) | sudo fdisk
       sudo sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
       DRIVE=$(sudo fdisk -l | grep 'Disk /dev/' | cut -f 2 -d ' ')
       DRIVE=${DRIVE%?}
