@@ -64,11 +64,11 @@ write_files:
         sleep 1
       done
       (
-      echo o # Create a new empty DOS partition table
-      echo n # Add a new partition
-      echo p # Primary partition
-      echo 1 # Partition number
-      echo +100M  # First sector (Accept default: 1)
+      echo o
+      echo n
+      echo p
+      echo 1
+      echo +100M
       echo n
       echo p
       echo 2
