@@ -37,9 +37,9 @@
       do
         wget_output=`sudo wget -O /etc/cloud-config.yml https://raw.githubusercontent.com/kachind/rancheros-cloud-config/master/cloud-config.yml`
         wget_output=$?
-        ifconfig down docker-sys
+        ifconfig docker-sys down
         sleep 1
-        ifconfig up docker-sys
+        ifconfig docker-sys up
       done
       sudo sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
 echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sdd
