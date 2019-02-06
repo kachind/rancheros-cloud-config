@@ -21,6 +21,7 @@ write_files:
         sleep 10
         system-docker start network
         sleep 5
+        ifconfig docker-sys down
         ifconfig eth0 down
         ifconfig eth1 down
         sleep 5
@@ -29,6 +30,8 @@ write_files:
         netconf
         sleep 5
         ifconfig eth0 up
+        sleep 5
+        ifconfig docker-sys up
         sleep 5
       fi
       ((count = count - 1))
