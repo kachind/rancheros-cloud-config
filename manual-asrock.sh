@@ -42,4 +42,4 @@
         ifconfig docker-sys up
       done
       sudo sed -i "s/$match/$match\n$insert/" /etc/cloud-config.yml
-echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sdd
+echo Y | ros install -f -c /etc/cloud-config.yml -d /dev/sda
