@@ -2,11 +2,6 @@
 rancher:
   docker:
     engine: docker-18.06.1-ce
-  network:
-    dns:
-      nameservers:
-        - 8.8.8.8
-        - 8.8.4.4
 write_files:
   - path: /etc/rc.local
     permissions: "0755"
