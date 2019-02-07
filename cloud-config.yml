@@ -17,22 +17,19 @@ write_files:
         ((count = 1))
       else
         echo "trying network restart"
-        system-docker stop network
-        sleep 10
-        system-docker start network
-        sleep 5
-        ifconfig docker-sys down
-        ifconfig eth0 down
-        ifconfig eth1 down
-        sleep 5
-        ifconfig eth1 up
-        sleep 5
-        netconf
-        sleep 5
-        ifconfig eth0 up
-        sleep 5
-        ifconfig docker-sys up
-        sleep 5
+        if [[ $count % 2 - eq 0 ]] ; then
+          ifconfig eth1 up
+          sleep 1
+          ifconfig eth0 down
+          sleep 1
+          netconf
+        else
+          ifconfig eth0 up
+          sleep 1
+          ifconfig eth1 down
+          sleep 1
+          netconf
+        fi
       fi
       ((count = count - 1))
       done
